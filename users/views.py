@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import UserProfile
 
-
 class RegisterView(generics.CreateAPIView):
     queryset = UserProfile.objects.all()
     serializer_class = UserSerializer
