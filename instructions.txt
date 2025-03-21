@@ -1,0 +1,57 @@
+1) Register User:
+
+To register a new user, send a POST request to /api/users/register/ with the following data:
+
+curl --location 'http://127.0.0.1:8000/api/users/register/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "phone_number": "+919856834787",
+  "name": "John Paul",
+  "email":"test@gmal.com",
+  "password": "Test@1234"
+}'
+
+Response: This will return an message , access_token and a refresh_token for future requests
+
+
+2) Search by Name:
+
+Use the GET request to search for a contact by name:
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=Siddhesh' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQyNTMxMTM1LCJpYXQiOjE3NDI1Mjc1MzUsImp0aSI6ImZjN2E3MTEzMGVmYjQyODNiMzAwYzQzZjNiM2ZkM2Q4IiwidXNlcl9pZCI6ImE2MGE1NmFiLWUyYWMtNGQwZi05NTgyLWQyYzBlYjhlOGNjOCJ9.n77EClJTl2A1FEyaV9bu0pBPTnqWqeF6ScW-FyyKwRc'
+
+NOTE: Pass the access_token in the Authorization header.
+
+Response: this will return name,phone_number,is_registered,spam_reports
+
+
+
+3) Search by phone_number:
+
+Use the GET request to search for a contact by phone_number:
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=+918642354154' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQyNTMxMTM1LCJpYXQiOjE3NDI1Mjc1MzUsImp0aSI6ImZjN2E3MTEzMGVmYjQyODNiMzAwYzQzZjNiM2ZkM2Q4IiwidXNlcl9pZCI6ImE2MGE1NmFiLWUyYWMtNGQwZi05NTgyLWQyYzBlYjhlOGNjOCJ9.n77EClJTl2A1FEyaV9bu0pBPTnqWqeF6ScW-FyyKwRc'
+
+NOTE: Pass the access_token in the Authorization header.
+
+Response: this will return name,phone_number,is_registered,spam_reports
+
+
+
+4) Submit Spam Report:
+
+To submit a spam report, send a POST request to /api/spam/report/
+
+curl --location 'http://127.0.0.1:8000/api/spam/report/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQyNTMwNzc3LCJpYXQiOjE3NDI1MjcxNzcsImp0aSI6IjA4ZjVlMDA4N2NjNDQ4NTM4MjMzOGYwYjllNTk2MmU4IiwidXNlcl9pZCI6ImQ0ZWMzOWUxLTYxNDctNDU1YS1hNWIyLWI3Njk3YjljNzMzZiJ9.aIPfGGc9sF7Js-nQQXgNsTCHHmG0mc0IMn6Jf9otIzc' \
+--data '{
+    "phone_number": "+91902345492",
+    "spammer_name": "Siddhesh Jondhale"
+}'
+
+Note: Pass the access_token in the Authorization header.
+
+

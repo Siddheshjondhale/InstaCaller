@@ -1,0 +1,119 @@
+curl --location 'http://127.0.0.1:8000/api/users/register/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "phone_number": "+919856898787",
+  "name": "John Paul",
+  "password": "Test@1234"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/users/register/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "phone_number": "+919876543210",
+  "name": "Alice Smith",
+  "password": "Alice@1234"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/users/register/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "phone_number": "+917872647832",
+  "name": "Bob Marley",
+  "password": "Bob@2023"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/users/register/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "phone_number": "+917856372149",
+  "name": "Eve Rogers",
+  "password": "Eve@2025"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/users/register/' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+  "phone_number": "+91902345492",
+  "name": "Charlie Brown",
+  "password": "Charlie@7890"
+}'
+
+
+
+
+search based on name
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=John' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=Alice' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=Bob' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=Eve' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=Charlie' \
+--header 'Authorization: Bearer your_access_token'
+
+
+search based on phone numerb
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=%2B919856898787' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=%2B919876543210' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=%2B917872647832' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=%2B917856372149' \
+--header 'Authorization: Bearer your_access_token'
+
+curl --location 'http://127.0.0.1:8000/api/globalcontacts/search/?query=%2B91902345492' \
+--header 'Authorization: Bearer your_access_token'
+
+
+submit a report
+
+curl --location 'http://127.0.0.1:8000/api/spam/report/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer your_access_token' \
+--data '{
+    "phone_number": "+919856898787",
+    "spammer_name": "John Paul"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/spam/report/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer your_access_token' \
+--data '{
+    "phone_number": "+919876543210",
+    "spammer_name": "Alice Smith"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/spam/report/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer your_access_token' \
+--data '{
+    "phone_number": "+917872647832",
+    "spammer_name": "Bob Marley"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/spam/report/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer your_access_token' \
+--data '{
+    "phone_number": "+917856372149",
+    "spammer_name": "Eve Rogers"
+}'
+
+curl --location 'http://127.0.0.1:8000/api/spam/report/' \
+--header 'Content-Type: application/json' \
+--header 'Authorization: Bearer your_access_token' \
+--data '{
+    "phone_number": "+91902345492",
+    "spammer_name": "Charlie Brown"
+}'

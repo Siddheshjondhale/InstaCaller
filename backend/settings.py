@@ -21,7 +21,7 @@ SECRET_KEY = 'django-insecure-hu208=$qas*(z!k*a_bhn-t=))92p^wzux3b^cab86*nt*vsv#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "domain.com"]
 
 
 # Application definition
@@ -35,16 +35,17 @@ INSTALLED_APPS = [
     "rest_framework",
     "users",
     "globalcontacts",
+    "spammanagement"
 ]
 # disabling Session storege into DB as we are using JWT
 SESSION_ENGINE = "django.contrib.sessions.backends.cache"
 
 
 MIDDLEWARE = [
-    "core.middleware.JWTBearerAuthMiddleware.JWTBearerAuthMiddleware",  # middleware for JWT token authentication 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
+    "core.middleware.JWTBearerAuthMiddleware.JWTBearerAuthMiddleware",  # middleware for JWT token authentication 
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -124,6 +125,8 @@ SIMPLE_JWT = {
     "BLACKLIST_AFTER_ROTATION": True,
     "AUTH_HEADER_TYPES": ("Bearer",),
 }
+
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

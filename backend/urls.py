@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("api/users/", include("users.urls")),
     path("api/globalcontacts/", include("globalcontacts.urls")),
+    path("api/spam/", include("spammanagement.urls")),
 ]

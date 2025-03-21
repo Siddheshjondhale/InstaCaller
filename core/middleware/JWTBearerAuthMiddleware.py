@@ -17,8 +17,13 @@ class JWTBearerAuthMiddleware(MiddlewareMixin):
             return JsonResponse({"error": "Authentication failed. Please provide a valid token"}, status=401)
 
         try:
+            print(f"Header received: {header}")
             token = header[7:].decode()
             validated_token = auth.get_validated_token(token)
             request.user = auth.get_user(validated_token)
-        except Exception:
+            print(f"Validated user: {request.user}")
+            
+
+        except Exception as e:
+            print(f"JWT Authentication Error: {str(e)}")  # Print actual error for debugging
             return JsonResponse({"error": "Invalid or expired token. Please log in again"}, status=401)

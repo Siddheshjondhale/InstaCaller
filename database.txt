@@ -1,0 +1,11 @@
+1. Create Database
+CREATE DATABASE InstaCaller;
+
+-- Enable UUID extension for generating UUIDs
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";  
+
+-- Enable pg_trgm extension for trigram-based similarity search
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+
+

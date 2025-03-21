@@ -4,9 +4,10 @@ from rest_framework.response import Response
 from django.contrib.postgres.search import SearchQuery, SearchRank, TrigramSimilarity
 from django.db.models import Q
 from globalcontacts.models import GlobalContactPhoneBook
+from spammanagement.models import SpamSummary 
 
 # Search By Name or By Phone Number (Using Redis cache for caching)
-class SearchView(APIView):
+class SearchContactView(APIView):
     def get(self, request):
         query = request.GET.get("query", "").strip()
 
@@ -35,15 +36,18 @@ class SearchView(APIView):
                 similarity=TrigramSimilarity("name", query)
             ).filter(Q(search_vector=search_query) | Q(similarity__gt=0.3)).order_by("-rank", "-similarity")
 
-        result = [
-            {
+        result = []
+        for contact in contacts:
+            # Get spam count from SpamSummary
+            spam_summary = SpamSummary.objects.filter(phone_number=contact.phone_number).first()
+            spam_count = spam_summary.spam_count if spam_summary else 0
+
+            result.append({
                 "name": contact.name,
                 "phone_number": contact.phone_number,
                 "is_registered": contact.is_registered,
-                "spam_reports": 0
-            }
-            for contact in contacts
-        ]
+                "spam_reports": spam_count  # Include the spam count here
+            })
 
         if not result:
             return Response({"message": "No contacts found matching your query"}, status=404)
